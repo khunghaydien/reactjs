@@ -1,0 +1,147 @@
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: #20232a;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  &-group {
+    position: relative;
+    margin-bottom: 25px;
+    &--label {
+      color: #61dafb;
+    }
+    &--error {
+      color: #ff3333;
+      font-size: 13px;
+      position: absolute;
+    }
+  }
+  & .submit {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #61dafb;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border: unset;
+    background: unset;
+    &:hover {
+      background: #61dafb;
+      color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #61dafb, 0 0 25px #61dafb, 0 0 50px #61dafb,
+        0 0 100px #61dafb;
+    }
+
+    & .animation-submit {
+      position: absolute;
+      display: block;
+      &:nth-child(1) {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #61dafb);
+        animation: btn-anim1 1s linear infinite;
+      }
+      &:nth-child(2) {
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #61dafb);
+        animation: btn-anim2 1s linear infinite;
+        animation-delay: 0.25s;
+      }
+      &:nth-child(3) {
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(270deg, transparent, #61dafb);
+        animation: btn-anim3 1s linear infinite;
+        animation-delay: 0.5s;
+      }
+      &:nth-child(4) {
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, #61dafb);
+        animation: btn-anim4 1s linear infinite;
+        animation-delay: 0.75s;
+      }
+    }
+  }
+
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+    50%,
+    100% {
+      left: 100%;
+    }
+  }
+
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+    50%,
+    100% {
+      top: 100%;
+    }
+  }
+
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,
+    100% {
+      right: 100%;
+    }
+  }
+
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,
+    100% {
+      bottom: 100%;
+    }
+  }
+}
+input {
+  width: 100%;
+  padding: 10px 0;
+  color: #fff;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #20232a inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

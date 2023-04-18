@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Layout.scss';
 export type image = {
     src: string,
@@ -21,6 +21,9 @@ type LayoutMenuProps = {
     parentPath?: string
 }
 const LayoutMenu = ({ handleClickRoute, rootClass, listRouter, currentRoute, parentPath }: LayoutMenuProps) => {
+    useEffect(()=>{
+        console.log(listRouter);
+    },[listRouter])
     const ROOT = rootClass
     const [currentIdActive, setCurrentIdActive] = useState('learn_1')
     const handleClick = (routerItem: routerItem, routerItemId?: string) => {

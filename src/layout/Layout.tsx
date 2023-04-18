@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LayoutMenu, { routerItem } from './LayoutMenu';
 import { useLocation } from 'react-router-dom';
@@ -30,7 +30,55 @@ const listRouter: routerItem[] = [
     path: "/blog"
   }
 ]
-const listRouterSidebar: routerItem[] = [
+const listRouterSidebarCommunity: routerItem[]=[
+  {
+    id: 'community_1',
+    name: "Get involved",
+    path: "",
+    title: 'Get involved',
+    chidren: [
+      {
+        id: 'community_1_sub_1',
+        name: "React Conference",
+        path: "/test"
+      },
+      {
+        id: 'community_1_sub_2',
+        name: "React Meetups",
+        path: "/test"
+      },
+    ]
+  },
+]
+const listRouterSidebarBlog: routerItem[]=[
+  {
+    id: 'blog_1',
+    name: "Blog",
+    path: "",
+    title: 'Blog',
+  },
+]
+const listRouterSidebarReference: routerItem[]=[
+  {
+    id: 'reference_1',
+    name: "Callback",
+    path: "",
+    title: 'Hooks',
+    chidren: [
+      {
+        id: 'reference_1_sub_1',
+        name: "useCallback",
+        path: "/callback"
+      },
+      {
+        id: 'reference_1_sub_2',
+        name: "useContext",
+        path: "/context"
+      },
+    ]
+  },
+]
+const listRouterSidebarLearn: routerItem[] = [
   {
     id: 'learn_1',
     name: "Quick start",
@@ -82,20 +130,33 @@ const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const [currentTitle, setCurrentTitle] = useState('React Docs')
   const [routerParent, setRouterParent] = useState('')
+  const [listRouterSidebar, setListRouterSidebar]= useState(listRouterSidebarLearn)
   useEffect(() => {
-    console.log(location);
+    // console.log(location);
   }, [location])
   const navigate = useNavigate()
-  const handleClickRoute = (routerItem: routerItem) => {
+  const handleClickRoute = useCallback((routerItem: routerItem) => {
     if (routerItem.path) {
       navigate(routerItem.path)
     }
     setCurrentTitle(routerItem.name)
-  }
-  const handleClickRouteHeader = (routerItem: routerItem) => {
+  },[navigate])
+  const handleClickRouteHeader = useCallback((routerItem: routerItem) => {
     handleClickRoute(routerItem)
     setRouterParent(routerItem.path)
-  }
+    switch(location.pathname.split('/')[1]){
+      case 'reference': setListRouterSidebar(listRouterSidebarReference);
+        break;
+      case 'comminity':setListRouterSidebar(listRouterSidebarCommunity);
+        break;
+      case 'blog':setListRouterSidebar(listRouterSidebarBlog);
+        break;
+      case 'learn':setListRouterSidebar(listRouterSidebarLearn);
+        break;
+      default:setListRouterSidebar(listRouterSidebarLearn);
+        break;
+    }
+  },[handleClickRoute, location.pathname]) 
   const handleChangeSearch = (e: any) => {
     console.log(e.target.value);
   }

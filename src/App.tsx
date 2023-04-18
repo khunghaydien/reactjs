@@ -14,6 +14,7 @@ import EditorSetup from './component/learn/EditorSetup';
 import AddToAnExistsProject from './component/learn/AddToAnExistsProject';
 import "./App.scss"
 import QuickStart from './component/learn/QuickStart';
+import Callback from './component/reference/Callback';
 const routes = [
   {
     path: '/',
@@ -21,7 +22,13 @@ const routes = [
   },
   {
     path: '/reference',
-    element: <Reference />
+    element: <Reference />,
+    children: [
+      {
+        path: '',
+        element: <Callback />
+      },
+    ]
   },
   {
     path: '/community',
